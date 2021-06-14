@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgres:
+    image: mysql:5.7
+    container_name: 'mysql'
+    restart: always
+
+    environment:
+      MYSQL_DATABASE: 'uuid'
+      MYSQL_USER: 'guest'
+      MYSQL_PASSWORD: 'guest'
+      MYSQL_ROOT_PASSWORD: 'guest'
+    ports:
+      - 3306:3306
