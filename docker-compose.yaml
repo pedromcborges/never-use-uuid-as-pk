@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgres:
+  mysql-poc:
     image: mysql:5.7
     container_name: 'mysql'
     restart: always
