@@ -1,11 +1,12 @@
-package poc.uuid.domain.userVarchar;
+package poc.uuid.domain.user;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,24 +18,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "address_varchar")
-public class AddressVarchar {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserVarchar user_id;
+    private String name;
 
-    private String street;
-
-    private String neighborhood;
-
-    private String city;
-
-    private String country;
-
-    private Integer number;
+    @OneToMany(targetEntity = Address.class, fetch = FetchType.EAGER, mappedBy = "userId")
+    private List<Address> address;
 }

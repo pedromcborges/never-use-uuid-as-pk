@@ -1,4 +1,4 @@
-create table address_varchar
+create table address
 (
     id           bigint not null auto_increment,
     user_id      bigint,
@@ -8,7 +8,7 @@ create table address_varchar
     country      varchar(256),
     number       integer,
     primary key (id),
-    foreign key (user_id) references user_varchar(id)
+    foreign key (user_id) references user(id)
 );
 create table address_bin
 (

@@ -5,8 +5,8 @@ import java.util.UUID;
 import lombok.Builder;
 
 @Builder
-public class UserUuidResponse {
+public class UserHybridResponse {
     public UUID id;
     public String name;
-    public List<AddressUuidResponse> addresses;
+    public List<AddressResponse> addresses;
 }

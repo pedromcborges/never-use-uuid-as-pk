@@ -2,6 +2,7 @@ package poc.uuid.domain.userBin;
 
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,11 @@ public class UserBin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private UUID uuid;
+    @Column(name = "external_id", nullable = false)
+    private UUID externalId;
 
     private String name;
 
-    @OneToMany(targetEntity = AddressBin.class, fetch = FetchType.EAGER, mappedBy = "user_id")
+    @OneToMany(targetEntity = AddressBin.class, fetch = FetchType.EAGER, mappedBy = "userId")
     private List<AddressBin> address;
 }

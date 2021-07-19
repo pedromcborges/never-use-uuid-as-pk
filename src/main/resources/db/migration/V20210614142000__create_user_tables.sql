@@ -1,26 +1,25 @@
-create table user_varchar
+create table user
 (
     id   bigint not null auto_increment,
-    uuid varchar(36),
     name varchar(255),
     primary key (id)
 );
 create table user_bin
 (
     id   bigint not null auto_increment,
-    uuid binary(16),
+    external_id binary(16) unique,
     name varchar(255),
     primary key (id)
 );
 create table user_uuid_varchar
 (
-    id   varchar(36) not null,
+    id   varchar(36) not null unique,
     name varchar(255),
     primary key (id)
 );
 create table user_uuid_bin
 (
-    id   binary(16) not null,
+    id   binary(16) not null unique,
     name varchar(255),
     primary key (id)
 );

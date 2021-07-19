@@ -1,5 +1,6 @@
 package poc.uuid.domain.userUuidBin;
 
+import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,9 +25,8 @@ public class AddressUuidBin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserUuidBin user_id;
+    private UUID userId;
 
     private String street;
 

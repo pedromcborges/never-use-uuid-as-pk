@@ -25,6 +25,6 @@ public class UserUuidBin {
 
     private String name;
 
-    @OneToMany(targetEntity = AddressUuidBin.class, fetch = FetchType.EAGER, mappedBy = "user_id")
+    @OneToMany(targetEntity = AddressUuidBin.class, fetch = FetchType.EAGER, mappedBy = "userId")
     private List<AddressUuidBin> address;
 }
