@@ -1,2 +1,4 @@
-# uuid-poc
-The purpose of this poc is to check the cost difference of persisting the uuid in binary or varchar(36)
+# Never user UUID as PK
+The purpose of this poc is to check the cost difference of persisting id as Long ou UUID in binary or varchar
+
+
