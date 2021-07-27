@@ -1,6 +1,7 @@
 package poc.uuid.domain.userUuidVarchar;
 
 import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Builder
@@ -22,10 +24,12 @@ import lombok.NoArgsConstructor;
 public class AddressUuidVarchar {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(columnDefinition = "VARCHAR(36)", nullable = false, unique = true)
+    @Type(type="org.hibernate.type.UUIDCharType")
+    private UUID id;
 
     @JoinColumn(name = "user_id", nullable = false)
+    @Type(type="org.hibernate.type.UUIDCharType")
     private UUID userId;
 
     private String street;

@@ -28,5 +28,5 @@ public class User {
     private String name;
 
     @OneToMany(targetEntity = Address.class, fetch = FetchType.EAGER, mappedBy = "userId")
-    private List<Address> address;
+    private List<Address> addresses;
 }

@@ -4,10 +4,10 @@ create table user
     name varchar(255),
     primary key (id)
 );
-create table user_bin
+create table user_hybrid
 (
     id   bigint not null auto_increment,
-    external_id binary(16) unique,
+    external_id binary(16) unique not null,
     name varchar(255),
     primary key (id)
 );

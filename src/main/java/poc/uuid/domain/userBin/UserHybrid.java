@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user_bin")
-public class UserBin {
+@Table(name = "user_hybrid")
+public class UserHybrid {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,6 @@ public class UserBin {
 
     private String name;
 
-    @OneToMany(targetEntity = AddressBin.class, fetch = FetchType.EAGER, mappedBy = "userId")
-    private List<AddressBin> address;
+    @OneToMany(targetEntity = AddressHybrid.class, fetch = FetchType.EAGER, mappedBy = "userId")
+    private List<AddressHybrid> addresses;
 }

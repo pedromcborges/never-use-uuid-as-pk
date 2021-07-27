@@ -16,7 +16,7 @@ DELIMITER ;
 delimiter #
 create procedure load_user_data()
 begin
-    declare v_max int unsigned default 10;
+    declare v_max int unsigned default 10000000;
     declare v_counter int unsigned default 1;
 
     start transaction;
@@ -41,16 +41,16 @@ end #
 delimiter ;
 
 delimiter #
-create procedure load_user_bin_data()
+create procedure load_user_hybrid_data()
 begin
-    declare v_max int unsigned default 10;
+    declare v_max int unsigned default 10000000;
     declare v_counter int unsigned default 1;
 
     start transaction;
     while v_counter < v_max
         do
-            insert into user_bin (id, external_id, name) values (v_counter, UUID_TO_BIN(uuid(), true), 'name');
-            insert into address_bin (user_id, street, neighborhood, city, country, number)
+            insert into user_hybrid (id, external_id, name) values (v_counter, UUID_TO_BIN(uuid(), true), 'name');
+            insert into address_hybrid (user_id, street, neighborhood, city, country, number)
             VALUES (v_counter, 'street', 'neighborhood', 'city', 'country', 50),
                    (v_counter, 'street', 'neighborhood', 'city', 'country', 50),
                    (v_counter, 'street', 'neighborhood', 'city', 'country', 50),
@@ -70,7 +70,7 @@ delimiter ;
 delimiter #
 create procedure load_user_uuid_varchar_data()
 begin
-    declare v_max int unsigned default 10;
+    declare v_max int unsigned default 10000000;
     declare v_counter int unsigned default 1;
     declare identity varchar(36) default uuid();
 
@@ -78,17 +78,17 @@ begin
     while v_counter < v_max
         do
             insert into user_uuid_varchar (id, name) values (identity, 'name');
-            insert into address_uuid_varchar (user_id, street, neighborhood, city, country, number)
-            VALUES (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50);
+            insert into address_uuid_varchar (id, user_id, street, neighborhood, city, country, number)
+            VALUES (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (uuid(), identity, 'street', 'neighborhood', 'city', 'country', 50);
             set v_counter = v_counter + 1;
             set identity = uuid();
         end while;
@@ -99,7 +99,7 @@ delimiter ;
 delimiter #
 create procedure load_user_uuid_bin_data()
 begin
-    declare v_max int unsigned default 10;
+    declare v_max int unsigned default 10000000;
     declare v_counter int unsigned default 1;
     declare identity binary(16) default UUID_TO_BIN(uuid(), true);
 
@@ -107,17 +107,17 @@ begin
     while v_counter < v_max
         do
             insert into user_uuid_bin (id, name) values (identity, 'name');
-            insert into address_uuid_bin (user_id, street, neighborhood, city, country, number)
-            VALUES (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50),
-                   (identity, 'street', 'neighborhood', 'city', 'country', 50);
+            insert into address_uuid_bin (id, user_id, street, neighborhood, city, country, number)
+            VALUES (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50),
+                   (UUID_TO_BIN(uuid(), true), identity, 'street', 'neighborhood', 'city', 'country', 50);
             set v_counter = v_counter + 1;
             set identity = UUID_TO_BIN(uuid(), true);
         end while;
@@ -126,6 +126,6 @@ end #
 delimiter ;
 
 call load_user_data();
-call load_user_bin_data();
+call load_user_hybrid_data();
 call load_user_uuid_varchar_data();
 call load_user_uuid_bin_data();

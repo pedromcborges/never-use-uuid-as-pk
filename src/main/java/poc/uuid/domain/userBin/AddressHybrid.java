@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "address_bin")
-public class AddressBin {
+@Table(name = "address_hybrid")
+public class AddressHybrid {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
